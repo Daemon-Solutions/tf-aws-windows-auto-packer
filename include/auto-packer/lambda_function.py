@@ -8,9 +8,6 @@ def lambda_handler(event, context):
     build = file.split(".")[0]
     user_data="""
     <powershell>
-    stop-process -Name packer -Force
-    Remove-Item -Path c:\packer -Force
-    net user administrator Password01
     $AllProtocols = [System.Net.SecurityProtocolType]'Ssl3,Tls,Tls11,Tls12'
     [System.Net.ServicePointManager]::SecurityProtocol = $AllProtocols
     $url = "https://releases.hashicorp.com/packer/1.0.4/packer_1.0.4_windows_amd64.zip"
@@ -30,9 +27,8 @@ def lambda_handler(event, context):
     ./packer.exe build $s3key | Tee-Object -FilePath C:\packer\log.txt
     $log=$s3key.Split(".")[0] + "-"+(get-date -f "yyyy-MM-dd-HH-mm") + ".log"
     Write-S3Object -BucketName ao-prod-auto-packer -File c:\packer\log.txt -Key log\$log
-    Stop-EC2Instance -Terminate -Force 
     $instance=(Invoke-RestMethod -Method Get -Uri http://169.254.169.254/latest/meta-data/instance-id).Trim()
-    Remove-EC2Instance-InstanceId $instance -Force
+    Remove-EC2Instance -InstanceId $instance -Force
     </powershell>
     """ % {"1" : file, "2" : os.environ['env_s3_bucket'] }
     
