@@ -28,9 +28,9 @@ Usage
 Declare a module in your Terraform file, for example:
 
 
-```js
+
 module "auto-packer" {
-  source   = "../localmodules/tf-aws-auto-packer"
+  source   = "../modules/tf-aws-auto-packer"
   envname  = "${var.envname}"
   envtype  = "${var.envtype}"
   customer = "ao"
