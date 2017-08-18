@@ -40,9 +40,13 @@ module "auto-packer" {
   customer = "ao"
 
   env_image_id      = "ami-f4bc4f8d"
+  
   env_instance_type = "t2.nano"
+  
   env_keyname       = "${var.key_name}"
+  
   env_subnet_id     = "${element(module.vpc.private, 0)}"
+  
   vpc_id            = "${module.vpc.vpc_id}"
 
 
