@@ -20,8 +20,11 @@ Prerequisites
 -------------
 
 1)The s3 bucket must contain a zip of the packer\include folder.
+
 2)The above zip file must have the \include folder inside it
+
 3)Any paths referenced in the json packer files must be reference from the parent of the include folder
+
 4)The subnet defined in env_subnet_id must be able to route to the internet
 
 Usage
