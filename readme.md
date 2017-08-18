@@ -30,9 +30,13 @@ Declare a module in your Terraform file, for example:
 
 
 module "auto-packer" {
+
   source   = "../modules/tf-aws-auto-packer"
+  
   envname  = "${var.envname}"
+  
   envtype  = "${var.envtype}"
+  
   customer = "ao"
 
   env_image_id      = "ami-f4bc4f8d"
