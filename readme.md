@@ -8,7 +8,9 @@ It is triggered by copying a packer json file to the auto-packer s3 bucket. This
 There a 3 benefits of this using this module to create your packer images:-
 
 1) The packer run does not tie up your machine during the packer run
+
 2) Simultaneous packer runs can occur at once 
+
 3) A packer run can run longer than the 1hour restriction that we encounter with 'assumed' access
 
 Once a run has completed the 'runner' instance write that pcker output to the log folder in the auto-packer s3 bucket.
