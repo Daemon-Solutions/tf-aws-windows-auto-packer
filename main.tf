@@ -145,7 +145,7 @@ module "auto_packer_iam_instance_profile" {
   name             = "${var.customer}-auto-packer"
   packer_access    = "1"
   s3_readonly      = "1"
-  s3_write_buckets = "${aws_s3_bucket.lambda_auto_packer.id}"
+  s3_write_buckets = "${var.customer}-${var.envtype}-auto-packer"
 }
 
 resource "aws_security_group" "auto-packer" {
