@@ -53,7 +53,7 @@ EOF
 resource "aws_lambda_function" "lambda_auto_packer" {
   filename         = ".terraform/auto-packer.zip"
   source_code_hash = "${data.archive_file.create_auto_packer_package.output_base64sha256}"
-  function_name    = "auto-packer"
+  function_name    = "lambda-auto-packer"
   role             = "${aws_iam_role.lambda_auto_packer.arn}"
   handler          = "lambda_function.lambda_handler"
   runtime          = "python2.7"
