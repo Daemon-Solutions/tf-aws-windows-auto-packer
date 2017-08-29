@@ -26,7 +26,7 @@ def lambda_handler(event, context):
     cd $local_installers
     ./packer.exe build $s3key | Tee-Object -FilePath C:\packer\log.txt
     $log=$s3key.Split(".")[0] + "-"+(get-date -f "yyyy-MM-dd-HH-mm") + ".log"
-    Write-S3Object -BucketName ao-prod-auto-packer -File c:\packer\log.txt -Key log\$log
+    Write-S3Object -BucketName $installers_bucket -File c:\packer\log.txt -Key log\$log
     $instance=(Invoke-RestMethod -Method Get -Uri http://169.254.169.254/latest/meta-data/instance-id).Trim()
     Remove-EC2Instance -InstanceId $instance -Force
     </powershell>
